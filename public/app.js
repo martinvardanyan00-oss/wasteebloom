@@ -41,7 +41,8 @@ const i18n = {
     alertOrder: "Պարարտանյութի պատվերը գրանցվեց:",
     statusCompleted: "Ավարտված",
     statusPending: "Սպասման մեջ",
-    unitKg: "կգ"
+    unitKg: "կգ",
+    perDay: "կգ/օր"
   },
   en: {
     appTitle: "🌱 EcoWaste Armenia",
@@ -72,7 +73,8 @@ const i18n = {
     alertOrder: "Compost order placed successfully!",
     statusCompleted: "Completed",
     statusPending: "Pending",
-    unitKg: "kg"
+    unitKg: "kg",
+    perDay: "kg/day"
   },
   ru: {
     appTitle: "🌱 EcoWaste Armenia",
@@ -103,7 +105,8 @@ const i18n = {
     alertOrder: "Заказ на компост успешно оформлен!",
     statusCompleted: "Завершено",
     statusPending: "В ожидании",
-    unitKg: "кг"
+    unitKg: "кг",
+    perDay: "кг/день"
   }
 };
 
@@ -116,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     langSelect.addEventListener('change', (e) => {
       currentLang = e.target.value;
       applyLanguage(currentLang);
+      fetchStats();
       fetchPickups();
     });
   }
@@ -194,7 +198,7 @@ function populateRestaurantSelect() {
   partnerRestaurants.forEach(r => {
     const opt = document.createElement('option');
     opt.value = r.id;
-    opt.innerText = `${r.name} (${r.avgKg} ${t.unitKg}/day)`;
+    opt.innerText = `${r.name} (${r.avgKg} ${t.perDay})`;
     select.appendChild(opt);
   });
 }
